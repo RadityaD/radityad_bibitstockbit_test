@@ -17,5 +17,15 @@ export const NavWrapper = styled.div`
 export const NavItems = styled.div`
   color: ${theWhite};
   font-family: 'Nunito', sans-serif;
-  font-size: 2rem;
+  font-weight: 800;
+  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 24px;
+  margin-left: -24px;
+  transition: opacity 0.4s ease;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
