@@ -1,28 +1,42 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { uploadFetchParams } from '@/redux/filmdb';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateSearchKeyword } from '@/redux/filmdb';
 import Nav from '@/components/Nav';
+import SearchBar from '@/components/SearchBar';
+import List from '@/components/List';
 import useFilmList from '@/hooks/useFilmList';
 import { NAV_ROUTES } from '@/constants/index';
+import { Container } from './style';
 
 const MoviesComp = () => {
-  const { fetch } = useFilmList();
-  const state = useSelector((state) => state.filmdb);
+  const { data, loading, error, message } = useFilmList();
   const dispatch = useDispatch();
 
-  console.log({ state });
-  useEffect(() => {
-    fetch();
-  }, [fetch]);
+  const searchData = data?.Search || [];
+
+  console.log({ data, loading, error, message });
+
+  const onSearchChange = useCallback(
+    (value) => {
+      console.log('search changed');
+      dispatch(updateSearchKeyword(value));
+    },
+    [dispatch]
+  );
+
+  // useEffect(() => {
+  //   fetch(state);
+  // }, [fetch, state]);
 
   return (
-    <div>
+    <>
       <Nav items={NAV_ROUTES} />
+      <Container>
+        <SearchBar onSearch={onSearchChange} debounce={1000} />
+        <List data={searchData} />
+      </Container>
       <div>testing</div>
-      <span onClick={() => dispatch(uploadFetchParams({ sekebon: 'sekebon' }))}>
-        Klik
-      </span>
-    </div>
+    </>
   );
 };
 
