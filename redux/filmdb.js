@@ -1,22 +1,30 @@
 import { combineReducers, createStore } from 'redux';
 
+// ? Klo menurut pendapatku si, pakai redux overkill deh(?)
+
 const initialStoreValue = {
-  s: 'Batman',
+  s: '',
   page: 1,
 };
 
 // Actions
 const UPDATE_LIST_PARAMS = 'UPDATE_LIST_PARAMS';
-const UPDATE_SEARCH_KEYWORD = 'UPDATE_SEARCH KEYWORD';
+const UPDATE_SEARCH_KEYWORD = 'UPDATE_SEARCH_KEYWORD';
+const UPDATE_PAGE = 'UPDATE_PAGE';
 
 // Action Creator
-export const uploadFetchParams = (payload) => ({
+export const updateListParams = (payload) => ({
   type: UPDATE_LIST_PARAMS,
   payload,
 });
 
 export const updateSearchKeyword = (payload) => ({
   type: UPDATE_SEARCH_KEYWORD,
+  payload,
+});
+
+export const updatePage = (payload) => ({
+  type: UPDATE_PAGE,
   payload,
 });
 
@@ -29,6 +37,8 @@ const reducers = (state = initialStoreValue, action) => {
     case UPDATE_SEARCH_KEYWORD:
       console.log(action.payload);
       return { ...state, s: action.payload };
+    case UPDATE_PAGE:
+      return { ...state, page: action.payload };
     default:
       return state;
   }

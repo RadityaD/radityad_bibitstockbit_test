@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { theBlack, theWhite, theRed } from '@/styles/colors';
 
 export const SearchContainer = styled.div`
-  position: relative;
+  position: sticky;
   display: flex;
   width: 100%;
   height: 66px;

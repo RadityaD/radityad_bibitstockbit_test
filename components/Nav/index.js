@@ -7,7 +7,7 @@ const Nav = ({ items = [] }) => {
   const router = useRouter();
 
   const handleChangeRoute = (link) => {
-    if (router.pathname.includes(link)) return;
+    if (router.pathname === link) return;
     router.push(link);
   };
 

@@ -1,15 +1,34 @@
 import styled from 'styled-components';
-import { theWhite, theGray, theBlack } from '@/styles/colors';
+import { theWhite, theGray, theGray2, theBlack } from '@/styles/colors';
 
 const Button = styled.div`
   display: inline-flex;
   background-color: ${theGray};
   border: 2px solid ${theBlack};
+  cursor: pointer;
+  &:hover {
+    background-color: ${theGray2};
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: flex-end;
+  transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  opacity: ${(props) => (props.hover ? '1' : '0')};
+  position: relative;
+  bottom: ${(props) => (props.hover ? '0px' : '-20px')};
+  padding: 0 8px 8px 8px;
+  z-index: 1;
 `;
 
 export const ButtonView = styled(Button)`
   width: 50px;
   height: 50px;
+  margin-right: 8px;
   background-image: url('/ic_poster_white.svg');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -17,6 +36,38 @@ export const ButtonView = styled(Button)`
   border-radius: 50%;
   position: relative;
   z-index: 1;
+`;
+
+export const ButtonDetail = styled(Button)`
+  border-radius: 999px;
+  height: 50px;
+  position: relative;
+  flex-grow: 1;
+  text-align: center;
+  z-index: 1;
+  & > span {
+    display: inline-flex;
+    color: ${theWhite};
+    font-size: 16px;
+    font-weight: 800;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+  }
+`;
+
+export const Overlay = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: opacity 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  opacity: ${(props) => (props.hover ? '1' : '0')};
 `;
 
 export const PosterContainer = styled.div`
@@ -28,48 +79,32 @@ export const PosterContainer = styled.div`
   overflow: hidden;
   margin-right: 20px;
   margin-bottom: 20px;
-  cursor: pointer;
-  & .overlay {
-    width: 100%;
-    height: 100%;
+  & .posterImage {
+    object-fit: cover;
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    transition: opacity 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-    opacity: 0;
+    width: 100%;
+    height: auto;
   }
-  & .text {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: ${theWhite};
-    position: absolute;
-    width: 100%;
+`;
+
+export const PosterText = styled.div`
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: ${theWhite};
+  position: absolute;
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 8px;
+  top: 0;
+  left: 0;
+  & > span {
+    position: relative;
+    z-index: 1;
     display: block;
-    text-align: center;
-    padding: 8px;
-    top: 0;
-    left: 0;
-    & > span {
-      position: relative;
-      z-index: 1;
-      display: block;
-      width: 100%;
-      top: -20px;
-      opacity: 0;
-      transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-    }
-  }
-  &:hover {
-    & .overlay {
-      opacity: 1;
-    }
-    & .text > span {
-      top: 0;
-      opacity: 1;
-      transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-    }
+    width: 100%;
+    top: ${(props) => (props.hover ? '0px' : '-20px')};
+    opacity: ${(props) => (props.hover ? '1' : '0')};
+    transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
   }
 `;

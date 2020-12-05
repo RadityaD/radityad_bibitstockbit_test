@@ -3,11 +3,10 @@ import { API_KEY, API_URL } from '@/constants/index';
 import axios from 'axios';
 import qs from 'qs';
 
-const useFilmList = () => {
+const useFilmDetail = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [total, setTotal] = useState(0);
   const [message, setMessage] = useState('');
   const [response, setResponse] = useState([]);
 
@@ -25,46 +24,15 @@ const useFilmList = () => {
     const res = await axios.get(`${API_URL}${qsString}`);
     setResponse(res);
     const responseData = res.data;
-    const searchData = responseData?.Search || [];
-    const totalData = responseData?.totalResults || 0;
 
     setLoading(false);
     if (!responseData.Error) {
-      setData(searchData);
-      setTotal(totalData);
+      setData(responseData);
     } else {
       setError(true);
       if (responseData.Error) setMessage(responseData.Error);
     }
   }, []);
-
-  const loadMore = useCallback(
-    async (params) => {
-      const paramsWithKey = {
-        ...params,
-        apikey: API_KEY,
-      };
-      const qsString = qs.stringify(paramsWithKey, { addQueryPrefix: true });
-
-      setLoading(true);
-      setError(false);
-
-      const res = await axios.get(`${API_URL}${qsString}`);
-      setResponse(res);
-      const responseData = res.data;
-      const searchData = responseData?.Search || [];
-
-      setLoading(false);
-      console.log(responseData.Search);
-      if (!responseData.Error) {
-        setData([...data, ...searchData]);
-      } else {
-        setError(true);
-        if (responseData.Error) setMessage(responseData.Error);
-      }
-    },
-    [data]
-  );
 
   return {
     fetch,
@@ -73,9 +41,7 @@ const useFilmList = () => {
     error,
     message,
     response,
-    loadMore,
-    total,
   };
 };
 
-export default useFilmList;
+export default useFilmDetail;
