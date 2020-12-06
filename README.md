@@ -2,16 +2,33 @@
 ## Intro
 
 Halo salam kenal, saya Raditya Danang, repo ini adalah sebuah upaya saya untuk menyelesaikan test recruitment dari Bibit / Stockbit.
+Dimohon kerja sama-nya
+
+Terima kasih
 
 ## Task
 
-- Task No. 1 Logic [[DEMO]](https://radityad-bibitstockbit-test-hqc8zmp0e.vercel.app/logictask) [[SOURCE]](https://github.com/RadityaD/radityad_bibitstockbit_test/blob/master/__task1Code.js)
+- Task No. 1 Logic [[DEMO]](https://radityad-bibitstockbit-test-9k2n3fgr8.vercel.app/logictask) [[SOURCE]](https://github.com/RadityaD/radityad_bibitstockbit_test/blob/master/__task1Code.js)
+
+- Task No. 2 Project [[DEMO]](https://radityad-bibitstockbit-test-9k2n3fgr8.vercel.app/filmdb/movies)[[SOURCE]](https://github.com/RadityaD/radityad_bibitstockbit_test)
+
+.
+.
+
+
+### NextJS Boilerplate
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
 First, run the development server:
+
+```
+npm install
+# or
+yarn install
+```
 
 ```bash
 npm run dev
