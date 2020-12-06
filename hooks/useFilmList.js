@@ -53,8 +53,6 @@ const useFilmList = () => {
       };
       const qsString = qs.stringify(paramsWithKey, { addQueryPrefix: true });
 
-      console.log('LOADMOARE');
-
       setLoading(true);
       setError(false);
       setMessage('');

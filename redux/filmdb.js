@@ -33,10 +33,8 @@ export const updatePage = (payload) => ({
 const reducers = (state = initialStoreValue, action) => {
   switch (action.type) {
     case UPDATE_LIST_PARAMS:
-      console.log(action.payload);
       return { ...state, ...action.payload };
     case UPDATE_SEARCH_KEYWORD:
-      console.log(action.payload);
       return { ...state, s: action.payload };
     case UPDATE_PAGE:
       return { ...state, page: action.payload };
