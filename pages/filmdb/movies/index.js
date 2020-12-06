@@ -6,7 +6,7 @@ import SearchBar from '@/components/SearchBar';
 import List from '@/components/List';
 import useFilmList from '@/hooks/useFilmList';
 import { NAV_ROUTES, PAGE_SIZE } from '@/constants/index';
-import { Container } from './style';
+import { Container } from '@/styles/filmdb/movies.module';
 
 const MoviesComp = () => {
   const {

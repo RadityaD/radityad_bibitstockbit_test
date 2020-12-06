@@ -6,7 +6,7 @@ import Nav from '@/components/Nav';
 import { NAV_ROUTES } from '@/constants/index';
 import GenericData from '@/components/GenericDetailData';
 import { FlexContainer } from '@/styles/flex';
-import { DetailContainer, TitleTxt } from './style';
+import { DetailContainer, TitleTxt } from '@/styles/filmdb/detail.module';
 
 const DetailPage = () => {
   const router = useRouter();

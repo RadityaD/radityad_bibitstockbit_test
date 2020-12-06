@@ -6,5 +6,3 @@ export const Container = styled.div`
   height: auto;
   margin: 0 auto;
 `;
-
-export default { Container };
