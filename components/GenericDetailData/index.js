@@ -1,4 +1,5 @@
 import React from 'react';
+import { string } from 'prop-types';
 import { GDContainer, TitleTxt, ContentTxt } from './style';
 
 const GenericData = ({ title, content }) => {
@@ -8,6 +9,16 @@ const GenericData = ({ title, content }) => {
       <ContentTxt>{content}</ContentTxt>
     </GDContainer>
   );
+};
+
+GenericData.propTypes = {
+  content: string,
+  title: string,
+};
+
+GenericData.defaultProps = {
+  content: '',
+  title: '',
 };
 
 export default GenericData;

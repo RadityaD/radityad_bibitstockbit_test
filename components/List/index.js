@@ -1,12 +1,9 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import { array, bool, func, string } from 'prop-types';
-// import { useDispatch /*useSelector*/ } from 'react-redux';
-// import { updatePage } from '@/redux/filmdb';
+import { array, bool, func } from 'prop-types';
 import Poster from '@/components/Poster';
 import { ListContainer, Loader } from './style';
 
 const List = ({ data, loadMore, hasNext }) => {
-  console.log({ data });
   const lazyLoader = useRef(null);
 
   const isInViewport = (el) => {
@@ -39,7 +36,7 @@ const List = ({ data, loadMore, hasNext }) => {
 
   return (
     <>
-      <ListContainer>
+      <ListContainer data-testid="listContainer">
         {data.map((item) => {
           const { Title, Poster: PosterUrl, Year, imdbID } = item || {};
           return (
@@ -53,7 +50,11 @@ const List = ({ data, loadMore, hasNext }) => {
           );
         })}
       </ListContainer>
-      {hasNext && <Loader ref={lazyLoader}>Loading...</Loader>}
+      {hasNext && (
+        <Loader ref={lazyLoader} data-testid="loader">
+          Loading...
+        </Loader>
+      )}
     </>
   );
 };

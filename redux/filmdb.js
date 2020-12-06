@@ -1,6 +1,7 @@
 import { combineReducers, createStore } from 'redux';
 
 // ? Klo menurut pendapatku si, pakai redux overkill deh(?)
+// ? tapi tetep ku bikin untuk store state kecil aja
 
 const initialStoreValue = {
   s: '',

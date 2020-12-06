@@ -21,20 +21,27 @@ const useFilmList = () => {
     setData([]);
     setLoading(true);
     setError(false);
+    setMessage('');
 
-    const res = await axios.get(`${API_URL}${qsString}`);
-    setResponse(res);
-    const responseData = res.data;
-    const searchData = responseData?.Search || [];
-    const totalData = responseData?.totalResults || 0;
+    try {
+      const res = await axios.get(`${API_URL}${qsString}`);
+      setResponse(res);
+      const responseData = res.data;
+      const searchData = responseData?.Search || [];
+      const totalData = responseData?.totalResults || 0;
 
-    setLoading(false);
-    if (!responseData.Error) {
-      setData(searchData);
-      setTotal(totalData);
-    } else {
+      setLoading(false);
+      if (!responseData.Error) {
+        setData(searchData);
+        setTotal(totalData);
+      } else if (responseData.Error) {
+        setError(true);
+        setMessage(responseData.Error);
+      }
+    } catch (e) {
+      console.error(e);
       setError(true);
-      if (responseData.Error) setMessage(responseData.Error);
+      setMessage(e);
     }
   }, []);
 
@@ -46,21 +53,29 @@ const useFilmList = () => {
       };
       const qsString = qs.stringify(paramsWithKey, { addQueryPrefix: true });
 
+      console.log('LOADMOARE');
+
       setLoading(true);
       setError(false);
+      setMessage('');
 
-      const res = await axios.get(`${API_URL}${qsString}`);
-      setResponse(res);
-      const responseData = res.data;
-      const searchData = responseData?.Search || [];
+      try {
+        const res = await axios.get(`${API_URL}${qsString}`);
+        setResponse(res);
+        const responseData = res.data;
+        const searchData = responseData?.Search || [];
 
-      setLoading(false);
-      console.log(responseData.Search);
-      if (!responseData.Error) {
-        setData([...data, ...searchData]);
-      } else {
+        setLoading(false);
+        if (!responseData.Error) {
+          setData([...data, ...searchData]);
+        } else if (responseData.Error) {
+          setError(true);
+          setMessage(responseData.Error);
+        }
+      } catch (e) {
+        console.error(e);
         setError(true);
-        if (responseData.Error) setMessage(responseData.Error);
+        setMessage(e);
       }
     },
     [data]

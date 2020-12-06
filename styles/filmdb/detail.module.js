@@ -2,12 +2,9 @@ import styled from 'styled-components';
 import { theWhite } from '@/styles/colors';
 
 export const DetailContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: block;
   width: 100%;
   padding: 40px;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const TitleTxt = styled.h1`

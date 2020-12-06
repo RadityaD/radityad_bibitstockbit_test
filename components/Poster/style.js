@@ -1,15 +1,6 @@
 import styled from 'styled-components';
-import { theWhite, theGray, theGray2, theBlack } from '@/styles/colors';
-
-const Button = styled.div`
-  display: inline-flex;
-  background-color: ${theGray};
-  border: 2px solid ${theBlack};
-  cursor: pointer;
-  &:hover {
-    background-color: ${theGray2};
-  }
-`;
+import { Button } from '@/styles/button';
+import { theWhite } from '@/styles/colors';
 
 export const ButtonContainer = styled.div`
   display: flex;
@@ -73,8 +64,9 @@ export const Overlay = styled.div`
 export const PosterContainer = styled.div`
   display: inline-flex;
   position: relative;
-  width: calc((100% / 4) - 20px);
-  height: 300px;
+  width: ${(props) =>
+    props.isDetailPage ? '300px' : 'calc((100% / 4) - 20px)'};
+  height: ${(props) => (props.isDetailPage ? '420px' : '300px')};
   border-radius: 8px;
   overflow: hidden;
   margin-right: 20px;
@@ -82,6 +74,16 @@ export const PosterContainer = styled.div`
   & .posterImage {
     object-fit: cover;
     position: absolute;
+    width: 100%;
+    height: auto;
+  }
+`;
+
+export const PosterImage = styled.div`
+  display: block;
+  & > img {
+    object-fit: cover;
+    position: ${(props) => (props.isModal ? 'relative' : 'absolute')};
     width: 100%;
     height: auto;
   }

@@ -35,7 +35,7 @@ const DetailPage = () => {
       <Nav items={NAV_ROUTES} />
       <DetailContainer>
         <FlexContainer>
-          <Poster image={posterUrl} />
+          <Poster image={posterUrl} year={Year} title={Title} layout="detail" />
           <FlexContainer direction="column">
             <TitleTxt>{Title}</TitleTxt>
             <TitleTxt>{`-- (${Year})`}</TitleTxt>

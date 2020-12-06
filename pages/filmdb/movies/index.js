@@ -4,6 +4,8 @@ import { updateSearchKeyword } from '@/redux/filmdb';
 import Nav from '@/components/Nav';
 import SearchBar from '@/components/SearchBar';
 import List from '@/components/List';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import useFilmList from '@/hooks/useFilmList';
 import { NAV_ROUTES, PAGE_SIZE } from '@/constants/index';
 import { Container } from '@/styles/filmdb/movies.module';
@@ -28,7 +30,6 @@ const MoviesComp = () => {
 
   const onSearchChange = useCallback(
     (value) => {
-      console.log('search changed');
       dispatch(updateSearchKeyword(value));
       setPage(1);
     },
@@ -58,6 +59,16 @@ const MoviesComp = () => {
     }
   }, [page, total]);
 
+  console.log({ error });
+
+  useEffect(() => {
+    if (error && message) {
+      const nofify = () => toast.error(`Error: ${message}`);
+      nofify();
+      setHasNext(false);
+    }
+  }, [error, message]);
+
   return (
     <>
       <Nav items={NAV_ROUTES} />
@@ -65,6 +76,7 @@ const MoviesComp = () => {
         <SearchBar onSearch={onSearchChange} debounce={1000} />
         <List data={data} loadMore={onLoadMore} hasNext={hasNext} />
       </Container>
+      <ToastContainer />
     </>
   );
 };
