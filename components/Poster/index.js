@@ -28,7 +28,7 @@ const Poster = ({ title, year, id, image, layout }) => {
   };
 
   const handleGoToDetail = () => {
-    router.push(`movies/detail/${id}`);
+    router.push(`/filmdb/detail/${id}`);
   };
 
   const handlePosterView = () => {

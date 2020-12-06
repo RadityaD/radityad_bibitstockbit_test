@@ -20,17 +20,24 @@ const useFilmDetail = () => {
     setData([]);
     setLoading(true);
     setError(false);
+    setMessage('');
 
-    const res = await axios.get(`${API_URL}${qsString}`);
-    setResponse(res);
-    const responseData = res.data;
+    try {
+      const res = await axios.get(`${API_URL}${qsString}`);
+      setResponse(res);
+      const responseData = res.data;
 
-    setLoading(false);
-    if (!responseData.Error) {
-      setData(responseData);
-    } else {
+      setLoading(false);
+      if (!responseData.Error) {
+        setData(responseData);
+      } else {
+        setError(true);
+        if (responseData.Error) setMessage(responseData.Error);
+      }
+    } catch (e) {
+      console.error(e);
       setError(true);
-      if (responseData.Error) setMessage(responseData.Error);
+      setMessage(e);
     }
   }, []);
 

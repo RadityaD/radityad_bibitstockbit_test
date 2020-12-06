@@ -1,6 +1,6 @@
 import React from 'react';
 import HomeContainer from '@/components/Containers/homepage';
 
-const MoviesComp = () => <HomeContainer />;
+const SeriesComp = () => <HomeContainer />;
 
-export default MoviesComp;
+export default SeriesComp;

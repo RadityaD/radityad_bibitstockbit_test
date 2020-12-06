@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import useDebounce from '@/hooks/useDebounce';
-import { func, number } from 'prop-types';
+import { func, number, string } from 'prop-types';
 import { SearchContainer } from './style';
 
-const SearchBar = ({ onSearch, debounce }) => {
-  const [searchVal, setSearchVal] = useState('');
+const SearchBar = ({ onSearch, debounce, keyword }) => {
+  const [searchVal, setSearchVal] = useState(keyword || '');
   const debouncedValue = useDebounce(searchVal, debounce);
 
   const handleOnChange = (e) => {
@@ -32,11 +32,13 @@ const SearchBar = ({ onSearch, debounce }) => {
 
 SearchBar.propTypes = {
   debounce: number,
+  keyword: string,
   onSearch: func.isRequired,
 };
 
 SearchBar.defaultProps = {
   debounce: 1000,
+  keyword: '',
 };
 
 export default SearchBar;

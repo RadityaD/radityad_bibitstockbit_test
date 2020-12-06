@@ -3,16 +3,18 @@ import { useRouter } from 'next/router';
 import useFilmDetail from '@/hooks/useFilmDetail';
 import Poster from '@/components/Poster';
 import Nav from '@/components/Nav';
+import Skeleton from '@/components/Skeleton';
 import { NAV_ROUTES } from '@/constants/index';
 import GenericData from '@/components/GenericDetailData';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FlexContainer } from '@/styles/flex';
 import { DetailContainer, TitleTxt } from '@/styles/filmdb/detail.module';
 
 const DetailPage = () => {
   const router = useRouter();
-  const { data, loading, error, fetch, response } = useFilmDetail();
+  const { data, loading, fetch, message, error } = useFilmDetail();
   const { filmid } = router.query || {};
-  console.log({ data, response });
 
   const { Title, Poster: posterUrl, Year } = data || {};
 
@@ -22,13 +24,20 @@ const DetailPage = () => {
   delete genericData.Response;
   delete genericData.imdbID;
 
-  console.log({ genericData });
-
   useEffect(() => {
     fetch({
       i: filmid,
     });
   }, [fetch, filmid]);
+
+  useEffect(() => {
+    if (error && message) {
+      const nofify = () => toast.error(`Error: ${message}`);
+      nofify();
+    }
+  }, [error, message]);
+
+  if (loading) return <Skeleton />;
 
   return (
     <>
@@ -49,6 +58,7 @@ const DetailPage = () => {
           })}
         </FlexContainer>
       </DetailContainer>
+      <ToastContainer />
     </>
   );
 };

@@ -4,7 +4,7 @@ import { combineReducers, createStore } from 'redux';
 // ? tapi tetep ku bikin untuk store state kecil aja
 
 const initialStoreValue = {
-  s: '',
+  s: 'Star Trek',
   page: 1,
 };
 
@@ -46,7 +46,7 @@ const reducers = (state = initialStoreValue, action) => {
 };
 
 // Combine Reducer
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   filmdb: reducers,
 });
 
