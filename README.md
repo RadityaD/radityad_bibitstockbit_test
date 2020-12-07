@@ -6,6 +6,10 @@ Dimohon kerja sama-nya
 
 Terima kasih
 
+## Notes
+
+- Development is using Node v14.15.1
+
 ## Task
 
 - Task No. 1 Logic [[DEMO]](https://radityad-bibitstockbit-test-9k2n3fgr8.vercel.app/logictask) [[SOURCE]](https://github.com/RadityaD/radityad_bibitstockbit_test/blob/master/__task1Code.js)
